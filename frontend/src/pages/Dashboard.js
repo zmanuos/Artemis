@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, StyleSheet, PanResponder } from "react-native";
-import { useNavigation } from "@react-navigation/native"; // Importar useNavigation
+import { useNavigation } from "@react-navigation/native";
 import Infocard from "../components/Infocard";
 import InfoTable from "../components/InfoTable";
 import { getRondas } from '../api/Ronda';
@@ -62,18 +62,15 @@ const Dashboard = () => {
     },
     onPanResponderMove: (evt, gestureState) => {
       if (gestureState.dx > 0) {
-        setSwipeDirection("Right"); // Deslizó hacia la derecha
+        setSwipeDirection("Right"); 
       } else if (gestureState.dx < 0) {
-        setSwipeDirection("Left"); // Deslizó hacia la izquierda
+        setSwipeDirection("Left"); 
       }
     },
     onPanResponderRelease: (evt, gestureState) => {
-      // Acción dependiendo de la dirección del deslizamiento
       if (gestureState.dx > 100) {
-        // Si el deslizamiento es lo suficientemente largo a la derecha, navega hacia la pantalla de "Accesses"
         navigation.navigate("Accesses");
       } else if (gestureState.dx < -100) {
-        // Si el deslizamiento es lo suficientemente largo a la izquierda, navega hacia la pantalla de "Users"
         navigation.navigate("Users");
       }
       setSwipeDirection("");
@@ -83,7 +80,7 @@ const Dashboard = () => {
   return (
     <View
       style={styles.container}
-      {...panResponder.panHandlers} // Asocia los gestos al contenedor
+      {...panResponder.panHandlers} 
     >
       <View style={styles.content}>
         <Infocard title="Active Routes" number={activeRoutes} iconName="route" />
